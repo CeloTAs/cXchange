@@ -1,0 +1,14 @@
+{
+  "name": "cxchange-api",
+  "version": "1.0.0",
+  "description": "The Backend for the cXchange DApp.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "habibsentongo",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
