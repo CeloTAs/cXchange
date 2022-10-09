@@ -34,11 +34,6 @@
   "dependencies": {
     "@openzeppelin/contracts": "^4.7.3",
     "@openzeppelin/contracts-upgradeable": "^4.8.0-rc.1",
-<<<<<<< HEAD
-    "dotenv": "^16.0.3",
-=======
->>>>>>> 0217abd (Set basic Proxy, Implementation and Factory contracts functions)
-    "ganache": "^7.0.0",
-    "redstone-evm-connector": "^2.1.9"
+    "dotenv": "^16.0.3"
   }
 }

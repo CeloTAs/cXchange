@@ -3,7 +3,7 @@
 - How do we represent user custodian wallet
   - Approach 1: Seed Phrase (❌ Problem of managing several keys)
   - Contract Wallet (✅ Keep Factory Safe)
-- Create xChangeFactory Contract
+- Create XChangeFactory Contract
 - Create Wallet Implementation Contract
 - Create WalletProxy Contract
 
@@ -32,3 +32,15 @@
   - Remove Proxy as Abstract
   - Flesh implementation function
   - Abstract owner & xChangeContract to CommonWalletV1
+  - hardhat/console.sol
+
+
+## Step 4
+
+- Write test
+  - should deploy new wallet for new user
+  - should revert deploy new wallet for new user
+  - should confirm wallet version to be v1.0.0
+  - should confirm cUSD and cEUR balance to be 100 
+  - should hold CELO native token
+  - should be able to transfer out tokens

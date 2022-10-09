@@ -6,42 +6,40 @@ import "./XChangeFactory.sol";
 import "./CommonWalletV1.sol";
 
 contract WalletImplementation is CommonWalletV1 {
+    modifier onlyOwner() {
+        require(
+            msg.sender == XChangeFactory(xChangeContract).owner(),
+            "WL: Unauthorized"
+        );
+        _;
+    }
 
-  modifier onlyOwner() {
-    require(
-      msg.sender == XChangeFactory(xChangeContract).owner(),
-      "WL: Unauthorized"
-    );
-    _;
-  }
- 
-  function version() public pure returns (string memory) {
-    return "v1.0.0";
-  }
+    function version() public pure returns (string memory) {
+        return "v1.0.0";
+    }
 
-  function erc20TokenBalance(address _token) public view returns (uint256) {
-    return IERC20(_token).balanceOf(address(this));
-  }
+    function erc20TokenBalance(address _token) public view returns (uint256) {
+        return IERC20(_token).balanceOf(address(this));
+    }
 
-  function celoTokenBalance() public view returns (uint256) {
-    return address(this).balance;
-  }
+    function celoTokenBalance() public view returns (uint256) {
+        return address(this).balance;
+    }
 
-  function withdrawErc20Token(
-    address _token,
-    address _to,
-    uint256 _amount
-  ) public onlyOwner {
-    IERC20(_token).transfer(_to, _amount);
-  }
+    function withdrawErc20Token(
+        address _token,
+        address _to,
+        uint256 _amount
+    ) public onlyOwner {
+        IERC20(_token).transfer(_to, _amount);
+    }
 
-  function withdrawCeloToken(uint256 _amount, address payable _to)
-    public
-    onlyOwner
-  {
-    require(address(this).balance > _amount, "WI: Insufficient balance");
+    function withdrawCeloToken(address payable _to, uint256 _amount)
+        public
+        onlyOwner
+    {
+        require(address(this).balance > _amount, "WI: Insufficient balance");
 
-    _to.transfer(_amount);
-  }
-
+        _to.transfer(_amount);
+    }
 }
