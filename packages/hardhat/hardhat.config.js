@@ -6,7 +6,7 @@ const { task } = require("hardhat/config");
 require("@nomiclabs/hardhat-ethers");
 require("@typechain/hardhat");
 
-const defaultNetwork = "alfajores";
+const defaultNetwork = "localhost";
 const mnemonicPath = "m/44'/52752'/0'/0"; // derivation path used by Celo
 
 // This is the mnemonic used by celo-devchain
