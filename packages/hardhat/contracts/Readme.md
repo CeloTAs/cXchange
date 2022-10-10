@@ -20,5 +20,6 @@
   - withdrawErc20Token
   - withdrawCeloToken
 - Add the following functions to XChangeFactory
+  - Make contract Ownable & Pausable
   - initialize (Openzeppelin upgradable)
   - updateWalletImplementation
