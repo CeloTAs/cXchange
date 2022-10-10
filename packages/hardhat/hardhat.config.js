@@ -1,17 +1,14 @@
-require("@nomiclabs/hardhat-waffle");
-require("dotenv").config({ path: ".env" });
+require("@nomicfoundation/hardhat-toolbox");
+require("@openzeppelin/hardhat-upgrades");
 require("hardhat-deploy");
-const fs = require("fs");
-const { task } = require("hardhat/config");
-require("@nomiclabs/hardhat-ethers");
-require("@typechain/hardhat");
+require("@nomiclabs/hardhat-etherscan");
+require("dotenv").config({ path: ".env" });
 
-const defaultNetwork = "localhost";
-const mnemonicPath = "m/44'/52752'/0'/0"; // derivation path used by Celo
+const defaultNetwork = "hardhat";
+// const mnemonicPath = "m/44'/52752'/0'/0"; // derivation path used by Celo
 
 // This is the mnemonic used by celo-devchain
-const DEVCHAIN_MNEMONIC =
-  "concert load couple harbor equip island argue ramp clarify fence smart topic";
+const DEVCHAIN_MNEMONIC = "concert load couple harbor equip island argue ramp clarify fence smart topic";
 
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
@@ -66,37 +63,37 @@ module.exports = {
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
 
-task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
-  const accounts = await hre.ethers.getSigners();
+// task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
+//   const accounts = await hre.ethers.getSigners();
 
-  for (const account of accounts) {
-    console.log(account.address);
-  }
-});
+//   for (const account of accounts) {
+//     console.log(account.address);
+//   }
+// });
 
-task(
-  "devchain-keys",
-  "Prints the private keys associated with the devchain",
-  async (taskArgs, hre) => {
-    const accounts = await hre.ethers.getSigners();
-    const hdNode = hre.ethers.utils.HDNode.fromMnemonic(DEVCHAIN_MNEMONIC);
-    for (let i = 0; i < accounts.length; i++) {
-      const account = hdNode.derivePath(`m/44'/60'/0'/0/${i}`);
-      console.log(
-        `Account ${i}\nAddress: ${account.address}\nKey: ${account.privateKey}`
-      );
-    }
-  }
-);
+// task(
+//   "devchain-keys",
+//   "Prints the private keys associated with the devchain",
+//   async (taskArgs, hre) => {
+//     const accounts = await hre.ethers.getSigners();
+//     const hdNode = hre.ethers.utils.HDNode.fromMnemonic(DEVCHAIN_MNEMONIC);
+//     for (let i = 0; i < accounts.length; i++) {
+//       const account = hdNode.derivePath(`m/44'/60'/0'/0/${i}`);
+//       console.log(
+//         `Account ${i}\nAddress: ${account.address}\nKey: ${account.privateKey}`
+//       );
+//     }
+//   }
+// );
 
-task("create-account", "Prints a new private key", async (taskArgs, hre) => {
-  const wallet = new hre.ethers.Wallet.createRandom();
-  console.log(`PRIVATE_KEY="` + wallet.privateKey + `"`);
-  console.log();
-  console.log(`Your account address: `, wallet.address);
-});
+// task("create-account", "Prints a new private key", async (taskArgs, hre) => {
+//   const wallet = new hre.ethers.Wallet.createRandom();
+//   console.log(`PRIVATE_KEY="` + wallet.privateKey + `"`);
+//   console.log();
+//   console.log(`Your account address: `, wallet.address);
+// });
 
-task("print-account", "Prints the address of the account", () => {
-  const wallet = new hre.ethers.Wallet(process.env.PRIVATE_KEY);
-  console.log(`Account: `, wallet.address);
-});
+// task("print-account", "Prints the address of the account", () => {
+//   const wallet = new hre.ethers.Wallet(process.env.PRIVATE_KEY);
+//   console.log(`Account: `, wallet.address);
+// });

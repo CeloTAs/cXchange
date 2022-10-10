@@ -13,7 +13,7 @@ contract XChangeFactory is
 {
     address public walletImp;
 
-    mapping(string => address) wallets;
+    mapping(string => address) public wallets;
 
     event NewWallet(string uuid, address indexed wallet);
 
