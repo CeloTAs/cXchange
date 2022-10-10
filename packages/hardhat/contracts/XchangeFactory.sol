@@ -4,22 +4,41 @@ pragma solidity ^0.8.4;
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "./WalletProxy.sol";
 
 contract XChangeFactory is
-  Initializable,
-  OwnableUpgradeable,
-  PausableUpgradeable
+    Initializable,
+    OwnableUpgradeable,
+    PausableUpgradeable
 {
-  address walletImp;
+    address public walletImp;
 
-  function initialize(address _walletImp) public initializer {
-    __Ownable_init();
-    __Pausable_init();
+    mapping(string => address) wallets;
 
-    walletImp = _walletImp;
-  }
+    event NewWallet(string uuid, address indexed wallet);
 
-  function updateWalletImplementation(address _walletImp) public onlyOwner whenPaused {
-    walletImp = _walletImp;
-  }
+    function initialize(address _walletImp) public initializer {
+        __Ownable_init();
+        __Pausable_init();
+
+        walletImp = _walletImp;
+    }
+
+    function updateWalletImplementation(address _walletImp)
+        public
+        onlyOwner
+        whenPaused
+    {
+        walletImp = _walletImp;
+    }
+
+    function newWallet(string memory userId) public returns (bool) {
+        require(bytes(userId).length >= 32, "WI: Invalid ID"); //If the passed string is ASCII character i.e 1 byte/character
+
+        address _wallet = address(new WalletProxy(walletImp));
+
+        wallets[userId] = _wallet;
+
+        return true;
+    }
 }

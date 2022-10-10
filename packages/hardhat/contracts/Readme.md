@@ -23,3 +23,12 @@
   - Make contract Ownable & Pausable
   - initialize (Openzeppelin upgradable)
   - updateWalletImplementation
+
+## Step 3
+
+- Complete XchangeFactory
+  - newWallet fucntion
+  - NewWallet event
+  - Remove Proxy as Abstract
+  - Flesh implementation function
+  - Abstract owner & xChangeContract to CommonWalletV1
