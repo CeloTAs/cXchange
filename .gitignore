@@ -35,3 +35,5 @@ nb-configuration.xml
 *.swp
 
 PROPOSAL.md
+
+.env

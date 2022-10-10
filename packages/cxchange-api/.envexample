@@ -1,0 +1,9 @@
+# APP
+export API_PORT=3003
+export DEBUG=False
+export NODE_ENV="development"
+
+# DB
+export DB_HOST="localhost"
+export DB_PORT=27017
+export DB_NAME="cxchange"
