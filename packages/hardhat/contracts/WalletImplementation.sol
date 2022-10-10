@@ -3,12 +3,9 @@ pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "./XChangeFactory.sol";
+import "./CommonWalletV1.sol";
 
-
-contract WalletImplementation {
-  address private owner;
-
-  address private xChangeContract;
+contract WalletImplementation is CommonWalletV1 {
 
   modifier onlyOwner() {
     require(
@@ -17,7 +14,7 @@ contract WalletImplementation {
     );
     _;
   }
-
+ 
   function version() public pure returns (string memory) {
     return "v1.0.0";
   }
@@ -46,4 +43,5 @@ contract WalletImplementation {
 
     _to.transfer(_amount);
   }
+
 }
