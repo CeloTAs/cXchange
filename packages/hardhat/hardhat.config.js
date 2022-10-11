@@ -2,7 +2,9 @@ require("@nomicfoundation/hardhat-toolbox");
 require("@openzeppelin/hardhat-upgrades");
 require("hardhat-deploy");
 require("@nomiclabs/hardhat-etherscan");
+require("hardhat-celo");
 require("dotenv").config({ path: ".env" });
+require('@openzeppelin/hardhat-upgrades');
 
 const defaultNetwork = "hardhat";
 // const mnemonicPath = "m/44'/52752'/0'/0"; // derivation path used by Celo
@@ -18,6 +20,11 @@ const DEVCHAIN_MNEMONIC = "concert load couple harbor equip island argue ramp cl
  */
 module.exports = {
   defaultNetwork,
+  etherscan: {
+    apiKey: {
+      alfajores: 'K7KR894CXR3JMRI6H84RIV5WT9X9FKS71K'
+    }
+  },
   networks: {
     localhost: {
       url: "http://127.0.0.1:8545"

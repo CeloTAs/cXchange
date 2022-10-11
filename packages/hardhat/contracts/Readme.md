@@ -44,3 +44,9 @@
   - should confirm cUSD and cEUR balance to be 100 
   - should hold CELO native token
   - should be able to transfer out tokens
+
+## Step 5 
+
+- Verify & Deploy Contract
+  - Install https://www.npmjs.com/package/hardhat-celo
+  - Change default network to Alfajores
