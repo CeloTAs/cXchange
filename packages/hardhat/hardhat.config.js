@@ -21,6 +21,7 @@ module.exports = {
   networks: {
     localhost: {
 <<<<<<< HEAD
+<<<<<<< HEAD
       url: "http://127.0.0.1:8545"
 =======
       url: "http://127.0.0.1:8545",
@@ -28,6 +29,9 @@ module.exports = {
         mnemonic: DEVCHAIN_MNEMONIC
       }
 >>>>>>> 0217abd (Set basic Proxy, Implementation and Factory contracts functions)
+=======
+      url: "http://127.0.0.1:8545"
+>>>>>>> dcf8408 ([WIP]: Adding tests)
     },
     alfajores: {
       url: "https://alfajores-forno.celo-testnet.org",
