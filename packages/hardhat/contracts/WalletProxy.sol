@@ -5,6 +5,7 @@ pragma solidity ^0.8.4;
 
 import "./XChangeFactory.sol";
 import "./CommonWalletV1.sol";
+import "hardhat/console.sol";
 
 /**
  * @dev This abstract contract provides a fallback function that delegates all calls to another contract using the EVM
@@ -27,6 +28,8 @@ contract WalletProxy is CommonWalletV1 {
      * This function does not return to its internal call site, it will return directly to the external caller.
      */
     function _delegate(address implementation) internal virtual {
+        console.log("_delegate");
+
         assembly {
             // Copy msg.data. We take full control of memory in this inline assembly
             // block because it will not return to Solidity code. We overwrite the
@@ -62,7 +65,7 @@ contract WalletProxy is CommonWalletV1 {
      * @dev This is a virtual function that should be overridden so it returns the address to which the fallback function
      * and {_fallback} should delegate.
      */
-    function _implementation() internal view virtual returns (address) {
+    function _implementation() internal view returns (address) {
         return XChangeFactory(xChangeContract).walletImp();
     }
 
@@ -88,9 +91,7 @@ contract WalletProxy is CommonWalletV1 {
      * @dev Fallback function that delegates calls to the address returned by `_implementation()`. Will run if call data
      * is empty.
      */
-    receive() external payable {
-        _fallback();
-    }
+    receive() external payable {}
 
     /**
      * @dev Hook that is called before falling back to the implementation. Can happen as part of a manual `_fallback`

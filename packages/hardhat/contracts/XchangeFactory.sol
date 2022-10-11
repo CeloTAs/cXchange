@@ -5,6 +5,7 @@ import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "./WalletProxy.sol";
+import "hardhat/console.sol";
 
 contract XChangeFactory is
     Initializable,
@@ -35,9 +36,11 @@ contract XChangeFactory is
     function newWallet(string memory userId) public returns (bool) {
         require(bytes(userId).length >= 32, "WI: Invalid ID"); //If the passed string is ASCII character i.e 1 byte/character
 
-        address _wallet = address(new WalletProxy(walletImp));
+        address _wallet = address(new WalletProxy(address(this)));
 
         wallets[userId] = _wallet;
+
+        emit NewWallet(userId, _wallet);
 
         return true;
     }

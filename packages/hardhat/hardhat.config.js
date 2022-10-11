@@ -20,10 +20,7 @@ module.exports = {
   defaultNetwork,
   networks: {
     localhost: {
-      url: "http://127.0.0.1:8545",
-      accounts: {
-        mnemonic: DEVCHAIN_MNEMONIC
-      }
+      url: "http://127.0.0.1:8545"
     },
     alfajores: {
       url: "https://alfajores-forno.celo-testnet.org",
