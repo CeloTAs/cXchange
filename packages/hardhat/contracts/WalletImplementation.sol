@@ -34,7 +34,7 @@ contract WalletImplementation is CommonWalletV1 {
         IERC20(_token).transfer(_to, _amount);
     }
 
-    function withdrawCeloToken(uint256 _amount, address payable _to)
+    function withdrawCeloToken(address payable _to, uint256 _amount)
         public
         onlyOwner
     {

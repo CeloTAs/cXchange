@@ -28,7 +28,6 @@ contract WalletProxy is CommonWalletV1 {
      * This function does not return to its internal call site, it will return directly to the external caller.
      */
     function _delegate(address implementation) internal virtual {
-        console.log("_delegate");
 
         assembly {
             // Copy msg.data. We take full control of memory in this inline assembly

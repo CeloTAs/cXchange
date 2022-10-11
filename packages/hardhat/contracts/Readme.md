@@ -38,9 +38,9 @@
 ## Step 4
 
 - Write test
-  - Check if wallet is deployed
-  - Add MockTokens to Use for Test
-  - Deploy cUSD, cReal, cEur in the test
-  - Fund Wallet with them and Celo native token 
-  - Transfer them to a new wallet
-  - Confirm its accurate
+  - should deploy new wallet for new user
+  - should revert deploy new wallet for new user
+  - should confirm wallet version to be v1.0.0
+  - should confirm cUSD and cEUR balance to be 100 
+  - should hold CELO native token
+  - should be able to transfer out tokens
