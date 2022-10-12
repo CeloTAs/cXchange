@@ -1,0 +1,135 @@
+{
+  "manifestVersion": "3.2",
+  "admin": {
+    "address": "0x0B32a3F8f5b7E5d315b9E52E640a49A89d89c820",
+    "txHash": "0x7e472129392dd1a462728c2ac0e42a72c37c345095602ffc4f7c00b7060d7c9a"
+  },
+  "proxies": [
+    {
+      "address": "0xF357118EBd576f3C812c7875B1A1651a7f140E9C",
+      "txHash": "0x96b47e733bed9797ce48304228afbce172abb7adeeac264104584cda03a53fde",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "8abd0f0ca4366e9f71610e5c875030a8073f19e61b182116915282cab0f02897": {
+      "address": "0x15F2ea83eB97ede71d84Bd04fFF29444f6b7cd52",
+      "txHash": "0x74567e03f0ba8f5a38746e7e52cf1879d0eb1cf9e18b3e3a58f6066c2cefbcb6",
+      "layout": {
+        "solcVersion": "0.8.4",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:67"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "_paused",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_bool",
+            "contract": "PausableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol:29"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "PausableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol:116"
+          },
+          {
+            "label": "walletImp",
+            "offset": 0,
+            "slot": "151",
+            "type": "t_address",
+            "contract": "XChangeFactory",
+            "src": "contracts/XChangeFactory.sol:15"
+          },
+          {
+            "label": "wallets",
+            "offset": 0,
+            "slot": "152",
+            "type": "t_mapping(t_string_memory_ptr,t_address)",
+            "contract": "XChangeFactory",
+            "src": "contracts/XChangeFactory.sol:17"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_mapping(t_string_memory_ptr,t_address)": {
+            "label": "mapping(string => address)",
+            "numberOfBytes": "32"
+          },
+          "t_string_memory_ptr": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          },
+          "t_string_storage": {
+            "label": "string"
+          }
+        }
+      }
+    }
+  }
+}
