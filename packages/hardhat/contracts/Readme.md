@@ -50,3 +50,8 @@
 - Verify & Deploy Contract
   - Install https://www.npmjs.com/package/hardhat-celo
   - Change default network to Alfajores
+
+
+## Step 6
+
+- Install Slither
