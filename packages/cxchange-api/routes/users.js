@@ -40,4 +40,39 @@ router.post("/register", (req, res) => {
   });
 });
 
+
+// User Login
+router.post("/login", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  User.findOne({ email }).then((user) => {
+    if (!user) return res.status(404).json({ User: "User not found" });
+
+    // Check password
+    bcrypt.compare(password, user.password).then((isMatch) => {
+      if (isMatch) {
+        // jwt payload
+        const payload = {
+          id: user.id,
+          email: user.email,
+        };
+        // Generate token
+        jwt.sign(
+          payload,
+          process.env.secret,
+          { expiresIn: "1d" },
+          (err, token) => {
+            res.json({
+              success: true,
+              token: `Bearer ${token}`,
+            });
+          }
+        );
+      } else res.status(404).json({ User: "User not found" });
+    });
+  });
+});
+
+
 module.exports = router;
