@@ -20,6 +20,9 @@ contract XChangeFactory is
 
     function initialize(address _walletImp) public initializer {
         walletImp = _walletImp;
+
+        __Ownable_init();
+        __Pausable_init();
     }
 
     function updateWalletImplementation(address _walletImp)
@@ -39,6 +42,8 @@ contract XChangeFactory is
     }
 
     function newWallet(string memory uuid) public onlyOwner returns (bool) {
+        require(bytes(uuid).length >= 32, "XF: Invalid uuid");
+
         address wallet = address(new WalletProxy(address(this)));
 
         wallets[uuid] = wallet;
