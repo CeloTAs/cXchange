@@ -17,7 +17,8 @@ const app = express();
 // parse application/json
 app.use(bodyParser.json())
 
-const users = require("./routes/users")
+const users = require("./routes/users");
+const wallet = require("./routes/wallet");
 
 db.on('error', console.log.bind(console, "connection error"));
 db.once('open', () => {
@@ -25,7 +26,8 @@ db.once('open', () => {
 })
 
 
-app.use("/api/users", users)
+app.use("/api/users", users);
+app.use("/api/wallet", wallet);
 
 app.get('/', (req, res) => {
     res.status(200).json({
