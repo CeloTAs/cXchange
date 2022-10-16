@@ -2,6 +2,7 @@
 export API_PORT=3003
 export DEBUG=False
 export NODE_ENV="development"
+secret=secret
 
 # DB
 export DB_HOST="localhost"
