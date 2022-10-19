@@ -40,17 +40,10 @@ before(async function ()  {
 
 
 describe("XChangeContract", function () {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
   it("demo", async function(){
       console.log("Imp:",this.walletImp.address)
   })
->>>>>>> dcf8408 ([WIP]: Adding tests)
-=======
->>>>>>> 429c60b (Complete test)
-  
+
   it("should deploy new wallet for new user", async function () {
    const res =  await this.xchange.newWallet(this.uuid1)
 
@@ -68,52 +61,17 @@ describe("XChangeContract", function () {
 
    it("should confirm wallet version to be v1.0.0", async function () {
      const wp = this.WP.attach(this.customer1Address)
-
-<<<<<<< HEAD
-<<<<<<< HEAD
+     
      expect(await wp.version()).to.be.equal("v1.0.0")
   });
 
-  it("should confirm cUSD and cEUR balance to be 100", async function () {
-=======
-    // const f = await getCustomerWallet(this.customer1Address, ["function version() public pure returns (string memory)"])
-
-     console.log(await wp.version())
-
-    //  console.log(self.WalletImp)
-    //  const customerWallet = await getCustomerWallet(
-    //   this.customer1Address,
-    //    ["function version() public pure returns (string memory)"]
-    //    )
-
-
-      //  const v = await customerWallet.version(this.customer1Address)
-      
-      // console.log(await ethers.provider.getCode(this.customer1Address))
-  
-
-    //  console.log(await customerWallet.version())
-    //  console.log(self.cUSD.address)
-    //  const cUsdBal = await walletContract.erc20TokenBalance(self.cUSD.address)
-
-    // console.log(cUsdBal)
-  });
-
-  it.skip("should confirm cUSD and cEUR balance to be 100", async function () {
->>>>>>> dcf8408 ([WIP]: Adding tests)
-=======
-     expect(await wp.version()).to.be.equal("v1.0.0")
-  });
 
   it("should confirm cUSD and cEUR balance to be 100", async function () {
->>>>>>> 429c60b (Complete test)
     const payment = ethers.utils.parseEther("100");
 
      await  this.cUSD.mint(this.customer1Address, payment)
      await  this.cEUR.mint(this.customer1Address, payment)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
      const wp = this.WP.attach(this.customer1Address)
 
      const cUsdBal = await wp.erc20TokenBalance(this.cUSD.address)
@@ -151,23 +109,6 @@ describe("XChangeContract", function () {
     expect(cUsdBal).to.eq(payment)
   })
 
-=======
-    //  const WP = await ethers.getContractFactory("WalletImplementation")
-    //  const wp = WP.attach(this.customer1Address)
-=======
-     const wp = this.WP.attach(this.customer1Address)
->>>>>>> 429c60b (Complete test)
-
-     const cUsdBal = await wp.erc20TokenBalance(this.cUSD.address)
-     const cEurBal = await wp.erc20TokenBalance(this.cEUR.address)
-
-     expect(cUsdBal).to.eq(payment)
-     expect(cEurBal).to.eq(payment)
-  });
-
-<<<<<<< HEAD
->>>>>>> dcf8408 ([WIP]: Adding tests)
-=======
   it("should hold CELO native token", async function(){
     const payment = ethers.utils.parseEther("100");
 
@@ -195,6 +136,4 @@ describe("XChangeContract", function () {
     expect(balance).to.eq(payment)
     expect(cUsdBal).to.eq(payment)
   })
-
->>>>>>> 429c60b (Complete test)
 });
