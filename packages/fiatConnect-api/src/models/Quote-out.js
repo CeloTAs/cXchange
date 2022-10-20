@@ -47,9 +47,6 @@ const quoteOutScehma = new Schema({
             `CELO`
           ]
     },
-    fiatAmount: {
-        type: String,
-    },
     cryptoAmount: {
         type: String,
     }
