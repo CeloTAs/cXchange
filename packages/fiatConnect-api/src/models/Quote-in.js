@@ -49,9 +49,6 @@ const quoteInScehma = new Schema({
     },
     fiatAmount: {
         type: String,
-    },
-    cryptoAmount: {
-        type: String,
     }
 });
 
