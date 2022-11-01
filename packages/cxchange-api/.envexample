@@ -8,3 +8,7 @@ secret=secret
 export DB_HOST="localhost"
 export DB_PORT=27017
 export DB_NAME="cxchange"
+
+# Contracts
+export XCHANGE_FACTORY_ADDRESS=0xF357118EBd576f3C812c7875B1A1651a7f140E9C
+export WALLET_IMP_ADDRESS=0xD28F3246f047Efd4059B24FA1fa587eD9fa3e77F
