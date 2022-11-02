@@ -1,27 +1,12 @@
+const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcryptjs");
 const dotenv = require("dotenv");
 const express = require("express");
 const jwt = require("jsonwebtoken");
 dotenv.config();
 
-// --- Abstraction Starts Here ---
-const { v4: uuidv4 } = require("uuid");
-const { newKit } = require("@celo/contractkit");
-const Web3 = require("web3");
-const web3 = new Web3(process.env.RPC_URL);
-const ContractKit = require("@celo/contractkit");
-const kit = ContractKit.newKitFromWeb3(web3);
-const account = web3.eth.accounts.privateKeyToAccount(process.env.PRIVATE_KEY);
-const factoryAbi = require("../abis/XChangeFactory.json");
-kit.connection.addAccount(account.privateKey);
-kit.defaultAccount = account.address;
-const factoryContract = new kit.connection.web3.eth.Contract(
-  factoryAbi.abi,
-  process.env.XCHANGE_FACTORY_ADDRESS
-);
-// --- Abstraction End Here ---
-
 const router = express.Router();
+const { factoryContract } = require("../utils/contract.js");
 
 // Load Input validations
 const validateRegisterInput = require("../validation/register");
