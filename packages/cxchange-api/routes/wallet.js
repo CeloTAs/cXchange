@@ -106,11 +106,59 @@ router.post("/transfer/celo", async (req, res) => {
   } catch (error) {
     res.status(400).json({ errors: error });
   }
+});
 
-  // Call Smart Contracts functions
-  // withdrawErc20Token or withdrawCeloToken respectively
-  // from packages/hardhat/contracts/WalletImplementation.sol
-  // and supply them with the transfer variables
+// Transfer funds
+router.post("/transfer/erc20", async (req, res) => {
+  const token_address = req.body.token_address;
+  const from_address = req.body.from_address;
+  const to_address = req.body.to_address;
+  const amount = req.body.amount;
+
+  if (!token_address || !to_address || !from_address || !amount) {
+    const errors =
+      "Valid token_address, from_address, to_address, and amount are required!";
+    return res.status(400).json({ errors });
+  }
+
+  if (isNaN(amount) || amount <= 0) {
+    const errors = "Amount must be a number greater than Zero!";
+    return res.status(400).json({ errors });
+  }
+
+  const walletContract = new kit.connection.web3.eth.Contract(
+    walletImpAbi.abi,
+    from_address
+  );
+
+  const cUSDcontract = await kit.contracts.getStableToken();
+  const amountWei = utils.parseEther(amount);
+
+  try {
+    const response = await walletContract.methods
+      .withdrawErc20Token(token_address, to_address, amountWei)
+      .send({
+        from: account.address,
+        feeCurrency: cUSDcontract.address,
+        gas: 800000
+      });
+
+    const confirmation = {
+      message: "Transaction Successful",
+      tx_receipt: response.transactionHash,
+      tx_details: {
+        from_address: from_address,
+        to_address: to_address,
+        amount: amount
+      }
+    };
+
+    console.log(response);
+
+    res.status(200).json(confirmation);
+  } catch (error) {
+    res.status(400).json({ errors: error });
+  }
 });
 
 module.exports = router;
