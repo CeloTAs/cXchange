@@ -17,3 +17,4 @@ const factoryContract = new kit.connection.web3.eth.Contract(
 
 exports.factoryContract = factoryContract;
 exports.kit = kit;
+exports.account = account;

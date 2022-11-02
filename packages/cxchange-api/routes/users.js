@@ -6,7 +6,11 @@ const jwt = require("jsonwebtoken");
 dotenv.config();
 
 const router = express.Router();
-const { factoryContract } = require("../utils/contract.js");
+const {
+  factoryContract,
+  cUSDcontract,
+  account
+} = require("../utils/contract.js");
 
 // Load Input validations
 const validateRegisterInput = require("../validation/register");
@@ -41,8 +45,6 @@ router.post("/register", (req, res) => {
           .catch((err) => console.log(err));
       });
     });
-
-    console.log(newUser.uuid);
 
     const cUSDcontract = await kit.contracts.getStableToken();
 

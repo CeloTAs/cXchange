@@ -4,23 +4,23 @@ dotenv.config();
 
 const router = express.Router();
 const walletImpAbi = require("../abis/WalletImplementation.json");
-const { kit } = require("../utils/contract.js");
+const { kit, account } = require("../utils/contract.js");
 const { ethers } = require("ethers");
 const { utils } = ethers;
 
 // Get Balances
 router.get("/balances", async (req, res) => {
   const wallet_address = req.body.wallet_address;
-  console.log({ wallet_address });
-  const walletContract = new kit.connection.web3.eth.Contract(
-    walletImpAbi.abi,
-    wallet_address
-  );
 
   if (!wallet_address) {
     const errors = "Valid wallet_address is required!";
     return res.status(400).json({ errors });
   }
+
+  const walletContract = new kit.connection.web3.eth.Contract(
+    walletImpAbi.abi,
+    wallet_address
+  );
 
   const celoBal = walletContract.methods.celoTokenBalance().call();
   const cUsdBal = walletContract.methods
@@ -58,7 +58,7 @@ router.get("/balances", async (req, res) => {
 });
 
 // Transfer funds
-router.post("/transfer", (req, res) => {
+router.post("/transfer/celo", async (req, res) => {
   const from_address = req.body.from_address;
   const to_address = req.body.to_address;
   const amount = req.body.amount;
@@ -73,21 +73,44 @@ router.post("/transfer", (req, res) => {
     return res.status(400).json({ errors });
   }
 
+  const walletContract = new kit.connection.web3.eth.Contract(
+    walletImpAbi.abi,
+    from_address
+  );
+
+  const cUSDcontract = await kit.contracts.getStableToken();
+  const amountWei = utils.parseEther(amount);
+
+  try {
+    const response = await walletContract.methods
+      .withdrawCeloToken(to_address, amountWei)
+      .send({
+        from: account.address,
+        feeCurrency: cUSDcontract.address,
+        gas: 800000
+      });
+
+    const confirmation = {
+      message: "Transaction Successful",
+      tx_receipt: response.transactionHash,
+      tx_details: {
+        from_address: from_address,
+        to_address: to_address,
+        amount: amount
+      }
+    };
+
+    console.log(response);
+
+    res.status(200).json(confirmation);
+  } catch (error) {
+    res.status(400).json({ errors: error });
+  }
+
   // Call Smart Contracts functions
   // withdrawErc20Token or withdrawCeloToken respectively
   // from packages/hardhat/contracts/WalletImplementation.sol
   // and supply them with the transfer variables
-  const confirmation = {
-    message: "Transaction Successful",
-    tx_receipt: "0x6905nhh6566567nkmh65",
-    tx_details: {
-      from_address: from_address,
-      to_address: to_address,
-      amount: amount
-    }
-  };
-
-  res.status(200).json(confirmation);
 });
 
 module.exports = router;
