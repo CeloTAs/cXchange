@@ -5,17 +5,21 @@ if (process.env.NODE_ENV !== 'production') {
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const express = require('express');
+const cors = require('cors')
 
 const db_host = process.env.DB_HOST || 'localhost';
 const db_port = process.env.DB_PORT || 27017;
 const db_name = process.env.DB_NAME || 'cxchange';
 mongoose.connect(`mongodb://${db_host}:${db_port}/${db_name}`);
-var db=mongoose.connection;
+const db=mongoose.connection;
 
 const app = express();
 
 // parse application/json
 app.use(bodyParser.json())
+
+// add CORS middleware
+app.use(cors())
 
 const users = require("./routes/users");
 const wallet = require("./routes/wallet");

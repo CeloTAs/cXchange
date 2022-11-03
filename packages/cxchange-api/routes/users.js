@@ -9,7 +9,8 @@ const router = express.Router();
 const {
   factoryContract,
   cUSDcontract,
-  account
+  account,
+  kit
 } = require("../utils/contract.js");
 
 // Load Input validations
