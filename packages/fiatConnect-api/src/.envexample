@@ -1,0 +1,5 @@
+# DB
+
+export DB_HOST='localhost'
+export DB_PORT=27017
+export DB_NAME="cxchange"
